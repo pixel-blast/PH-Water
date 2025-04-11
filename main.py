@@ -11,12 +11,16 @@ def index():
         ph_input = request.form.get("ph")
         try:
             ph_value = float(ph_input)
-            if ph_value < 7:
+            if ph_value < 7 and ph_value > 0:
                 result = "Acidic"
             elif ph_value == 7:
                 result = "Neutral"
-            elif ph_value <= 14:
+            elif ph_value <= 14 and ph_value > 7:
                 result = "Basic(Alkaline)"
+            elif ph_value == 0:
+                result = 'Concentrated Acid'
+            elif ph_value == 15:
+                result = 'Concentrated Base'
             else:
                 result = "Invalid pH"
         except ValueError:
